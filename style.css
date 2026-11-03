@@ -86,6 +86,27 @@ h1 {
 
 .soon { text-align: center; color: var(--muted); }
 
+/* Invite page */
+.invite-code {
+  font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 34px;
+  letter-spacing: 0.18em;
+  margin: 28px 0 20px;
+}
+
+.button {
+  display: inline-block;
+  background: var(--accent);
+  color: #1a1206;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 14px 28px;
+  border-radius: 999px;
+  margin-bottom: 28px;
+}
+
+.join .lede { color: var(--muted); font-size: 15px; }
+
 /* Legal documents */
 .doc h1 { font-size: clamp(32px, 7vw, 44px); margin-top: 16px; }
 .doc h2 { font-family: var(--serif); font-weight: 400; font-size: 26px; margin: 40px 0 8px; }
