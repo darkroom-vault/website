@@ -7,7 +7,8 @@
       "namespace": "android_app",
       "package_name": "com.darkroomvault.app",
       "sha256_cert_fingerprints": [
-        "2C:B4:B2:DE:96:08:FE:70:D7:7C:99:2C:59:21:06:65:9D:D7:DD:2A:78:33:DF:93:40:35:1D:41:86:68:2F:B5"
+        "2C:B4:B2:DE:96:08:FE:70:D7:7C:99:2C:59:21:06:65:9D:D7:DD:2A:78:33:DF:93:40:35:1D:41:86:68:2F:B5",
+        "FB:7A:B0:8F:5C:E0:71:48:A2:46:A6:78:4A:97:7D:EF:B2:C1:EC:A2:9B:05:7C:9C:43:C5:B1:D3:2C:CD:85:EF"
       ]
     }
   }
