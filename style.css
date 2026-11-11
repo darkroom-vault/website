@@ -107,6 +107,26 @@ h1 {
 
 .join .lede { color: var(--muted); font-size: 15px; }
 
+/* Reminder emails (unsubscribe) page */
+.unsub h1 { font-size: clamp(32px, 7vw, 48px); }
+.unsub h1:focus { outline: none; }
+.unsub .lede + .lede { margin-top: 16px; }
+.unsub #ask-action { margin: 28px 0 0; }
+.unsub #msg { margin-top: 20px; }
+
+button.button {
+  border: 0;
+  font: inherit;
+  font-weight: 600;
+  min-height: 48px;
+  margin-bottom: 0;
+  cursor: pointer;
+}
+
+button.button:disabled { opacity: 0.6; cursor: progress; }
+
+.button:focus-visible { outline: 3px solid var(--text); outline-offset: 3px; }
+
 /* Legal documents */
 .doc h1 { font-size: clamp(32px, 7vw, 44px); margin-top: 16px; }
 .doc h2 { font-family: var(--serif); font-weight: 400; font-size: 26px; margin: 40px 0 8px; }

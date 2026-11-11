@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-t6chEMeuukzN4aa2OJIPjsUfO3rYO02DousqjsjBk6g='; connect-src https://slfosczkhxxtwlzvwixl.supabase.co; style-src 'self'; img-src 'self'; base-uri 'none'; form-action 'none'">
+  <title>Reminder emails · Darkroom</title>
+  <meta name="description" content="Stop Darkroom’s download reminder emails.">
+  <link rel="canonical" href="https://darkroomvault.app/unsubscribe/">
+  <link rel="icon" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/icon.png">
+  <meta property="og:title" content="Reminder emails · Darkroom">
+  <meta property="og:description" content="Stop Darkroom’s download reminder emails.">
+  <meta property="og:image" content="https://darkroomvault.app/icon.png">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="/"><img src="/icon.png" alt="" width="32" height="32"> Darkroom</a>
+  </header>
+  <main>
+<section class="hero unsub">
+      <div id="manual">
+        <h1 id="manual-title" tabindex="-1">Reminder emails</h1>
+        <p class="lede" id="broken" hidden>That link isn’t complete, so it can’t stop anything by itself.</p>
+        <p class="lede">Darkroom emails you 2 days and 1 day before a vault’s photos are deleted, so you can save them first.
+        Sign-in codes still come either way.</p>
+        <p class="lede">To stop reminders, open Darkroom, go to <strong>Account</strong> (the icon on the home screen) and
+        turn off <strong>Download reminders</strong>. Or use the link at the bottom of any reminder email.</p>
+      </div>
+      <div id="ask" hidden>
+        <h1 id="ask-title" tabindex="-1">Stop reminder emails?</h1>
+        <p class="lede" id="ask-intro">Darkroom emails you 2 days and 1 day before a vault’s photos are deleted, so you can
+        save them first. Sign-in codes still come either way.</p>
+        <p id="ask-action"><button type="button" class="button" id="stop">Stop reminder emails</button></p>
+        <p class="lede" id="msg" role="status"></p>
+      </div>
+      <template id="fail">That didn’t work. Check your connection and try again. If it still doesn’t, email
+        <a href="mailto:privacy@darkroomvault.app">privacy@darkroomvault.app</a> and we’ll stop them for you.</template>
+    </section>
+    <script>
+      const fn = 'https://slfosczkhxxtwlzvwixl.supabase.co/functions/v1/email-unsubscribe';
+      const t = (new URLSearchParams(location.search).get('t') || '').trim();
+      const $ = (id) => document.getElementById(id);
+      const manual = () => {
+        $('ask').hidden = true;
+        $('manual').hidden = false;
+        $('broken').hidden = false;
+      };
+      if (/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(t)) {
+        $('manual').hidden = true;
+        $('ask').hidden = false;
+        const stop = $('stop');
+        const msg = $('msg');
+        stop.addEventListener('click', async () => {
+          stop.disabled = true;
+          stop.textContent = 'Stopping…';
+          msg.textContent = '';
+          let status = 0;
+          try {
+            const res = await fetch(fn + '?t=' + encodeURIComponent(t), {
+              method: 'POST',
+              credentials: 'omit',
+              cache: 'no-store',
+              referrerPolicy: 'no-referrer',
+              signal: AbortSignal.timeout ? AbortSignal.timeout(20000) : undefined,
+            });
+            status = res.status;
+          } catch {}
+          if (status >= 200 && status < 300) {
+            $('ask-title').textContent = 'Reminder emails stopped';
+            $('ask-intro').hidden = true;
+            $('ask-action').hidden = true;
+            msg.textContent = 'Done. You won’t get reminder emails from Darkroom any more. To turn them back on, open the app and go to Account.';
+            $('ask-title').focus();
+          } else if (status === 400) {
+            manual();
+            $('manual-title').focus();
+          } else {
+            msg.replaceChildren($('fail').content.cloneNode(true));
+            stop.disabled = false;
+            stop.textContent = 'Try again';
+          }
+        });
+      } else if (t) {
+        manual();
+      }
+    </script>
+  </main>
+  <footer>
+    <a href="/privacy">Privacy</a>
+    <a href="/terms">Terms</a>
+    <a href="mailto:privacy@darkroomvault.app">Contact</a>
+    <span>© 2026 Wesley Roberts</span>
+  </footer>
+</body>
+</html>
