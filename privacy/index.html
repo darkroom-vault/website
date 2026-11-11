@@ -90,10 +90,16 @@ choose to download them), your contacts, or your location.</p>
 <ul>
 <li><strong>Before the reveal:</strong> shots are stored encrypted in transit and at rest and are not viewable by anyone
 through the app.</li>
-<li><strong>Content filter:</strong> in vaults with the filter on, photos are checked automatically for nudity and violence
+<li><strong>Known child sexual abuse material:</strong> every photo and video, in every vault, is checked against known child
+sexual abuse material before anyone can see it, using Arachnid Shield from the Canadian Centre for Child
+Protection. The file is sent to Arachnid Shield and compared with its list of known material. A
+match is removed straight away, kept out of sight for us to review, and reported to the authorities. A shot that
+can&#39;t be checked within 2 hours isn&#39;t let in.</li>
+<li><strong>Content filter:</strong> in vaults with the filter on, photos are also checked automatically for nudity and violence
 (using Google Cloud Vision) before anyone in the vault can see them. Videos are checked from frames taken
 through the clip. On the Moderate level, a video that can&#39;t be checked in time may still go in. With the filter
-off, nothing is scanned. Hosts choose the filter level; public events always have it on.</li>
+off, there&#39;s no content filter (the check for known child sexual abuse material still runs). Hosts choose the
+filter level; public events always have it on.</li>
 <li><strong>Reports:</strong> anyone in a vault can report a shot they can see. Reports go to the vault&#39;s host and to us, and
 we review them. We keep a reported shot, and who took it, until we&#39;ve reviewed it, even if it&#39;s removed or its
 photographer deletes their account in the meantime. We remove illegal content and report it to the authorities.</li>
@@ -127,6 +133,11 @@ so it keeps working, and they aren&#39;t told.</li>
 <td>Fly.io</td>
 <td>Making highlight videos</td>
 <td>Japan (Tokyo)</td>
+</tr>
+<tr>
+<td>Arachnid Shield (Canadian Centre for Child Protection)</td>
+<td>Checking every photo and video against known child sexual abuse material</td>
+<td>Canada</td>
 </tr>
 <tr>
 <td>Google Cloud Vision</td>
